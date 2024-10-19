@@ -9,6 +9,7 @@ import {
   redirectLoggedInTo,
   redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
+import { ProfileComponent } from './components/profile/profile.component';
 
 //to generate a pipe and route our unlogged-in users to login page
 const redirectToLogin = () => redirectUnauthorizedTo(['login']);
@@ -29,7 +30,16 @@ const routes: Routes = [
     component: SignUpComponent,
     ...canActivate(redirectToHome),
   },
-  { path: 'home', component: HomeComponent, ...canActivate(redirectToLogin) },
+  {
+    path: 'home',
+    component: HomeComponent,
+    ...canActivate(redirectToLogin),
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    ...canActivate(redirectToLogin),
+  },
 ];
 
 @NgModule({

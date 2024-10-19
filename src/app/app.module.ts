@@ -18,6 +18,8 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideStorage, getStorage } from '@angular/fire/storage';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
     HomeComponent,
     LandingComponent,
     SignUpComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +43,7 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
     ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
+    provideStorage(() => getStorage()),
   ],
   providers: [],
   bootstrap: [AppComponent],

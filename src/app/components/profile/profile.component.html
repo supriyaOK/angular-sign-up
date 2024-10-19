@@ -1,0 +1,12 @@
+<div class="form-container mat-elevation-z5 text-align" *ngIf="user$|async as user">
+  <h1>User Profile</h1>
+  <div class="profile-image">
+    <img src="" alt="" width="120" height="120" [src]="user.photoURL ?? 'assets/images/profile-placeholder.jpg'">
+    <!--To get current user photo url we have added observable user$= this.authService.currentUser$
+    in component.ts file then add ngif and added [src]-->
+    <button mat-mini-fab (click)="inputField.click()">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
+  <input #inputField type="file" hidden (change)="uploadImage($event, user)">
+</div>

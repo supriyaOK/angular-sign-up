@@ -2,8 +2,11 @@
   Sign up flow with Firebase
   <ng-container *ngIf="authService.currentUser$|async as user; else loginButton">
     <button mat-button [matMenuTriggerFor]="userMenu">
+      <img class="profile-image-toolbar" width="30" height="30"
+        [src]="user.photoURL ?? 'assets/images/profile-placeholder.jpg'">
       <mat-icon>account_circle</mat-icon>
       {{user.displayName}}
+
       <mat-icon>expand_more</mat-icon>
     </button>
   </ng-container>
@@ -19,4 +22,5 @@
 </div>
 <mat-menu #userMenu="matMenu">
   <button mat-menu-item (click)="logout()">Logout</button>
+  <button mat-menu-item routerLink="/profile">Profile</button>
 </mat-menu>
