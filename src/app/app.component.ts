@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from './services/authentication.service';
 import { Router } from '@angular/router';
+import { UsersService } from './services/users.service';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  user$ = this.userService.currentUserProfile$;
+
   constructor(
-    public authService: AuthenticationService,
-    private router: Router
+    private authService: AuthenticationService,
+    private router: Router,
+    private userService: UsersService
   ) {}
 
   logout() {

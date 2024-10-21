@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { HotToastModule, HotToastService } from '@ngneat/hot-toast';
 import { User } from 'firebase/auth';
 import { concatMap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ImageUploadService } from 'src/app/services/image-upload.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-profile',
@@ -13,11 +15,27 @@ import { ImageUploadService } from 'src/app/services/image-upload.service';
 export class ProfileComponent {
   user$ = this.authService.currentUser$;
 
+  profileForm = new FormGroup({
+    uid: new FormControl(''),
+    displayName: new FormControl(''),
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    phone: new FormControl(''),
+    address: new FormControl(''),
+  });
+
   constructor(
     private authService: AuthenticationService,
     private imageUploadService: ImageUploadService,
-    private toast: HotToastService
+    private toast: HotToastService,
+    private userService: UsersService
   ) {}
+
+  /*ngOnInit(): void {
+    this.userService.currentUserProfile$.subscribe((user) => {
+      this.profileForm.patchValue({ ...user });
+    });
+  }*/
 
   uploadImage(event: any, user: User) {
     this.imageUploadService
@@ -34,4 +52,6 @@ export class ProfileComponent {
       )
       .subscribe();
   }
+
+  saveProfile() {}
 }
