@@ -13,6 +13,11 @@
     <div class="center margin-top">
       <button mat-raised-button color="primary" type="submit">Login</button>
     </div>
-    <span class="center margin-top">New to our platform<a class="sign-up-link" routerLink="sign-up">Sign-up</a></span>
+    <div class="login-footer"> <!--<span class="center margin-top">
+      New to our platform-->
+      <a class="sign-up" routerLink="/sign-up">Create account</a>
+      <a (click)="forgetPassword()">Forget password?</a>
+      <!--</span>-->
+    </div>
   </form>
 </div>

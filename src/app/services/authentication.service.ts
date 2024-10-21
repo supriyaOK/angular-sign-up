@@ -3,6 +3,7 @@ import {
   Auth,
   authState,
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   updateProfile,
   UserInfo,
@@ -41,6 +42,10 @@ export class AuthenticationService {
         return updateProfile(user, profileData);
       })
     );
+  }
+
+  passwordReset(email: string): Promise<void> {
+    return sendPasswordResetEmail(this.auth, email);
   }
 
   logout() {

@@ -22,6 +22,25 @@ export class LoginComponent {
     password: new FormControl('', [Validators.required]),
   });
 
+  async forgetPassword() {
+    const { email } = this.loginForm.value;
+    if (!email) {
+      // this.notification.error("Please enter an email address.");
+      alert('Please enter an email address.');
+      return;
+    }
+    try {
+      //this.notification.showLoading();
+      await this.authService.passwordReset(email);
+      //this.notification.success("Password reset.");
+      alert('Password reset email has been sent please check your inbox.');
+    } catch (err: any) {
+      //this.notification.firebaeError(err);
+    } finally {
+      //this.notification.hideLoading();
+    }
+  }
+
   //to check some form field related errors we need to add
   //getter methods for the email and password controls
   get email() {
